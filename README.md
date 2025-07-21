@@ -55,7 +55,7 @@ Source files (CSV):
 ![Airbyte Pipeline Setup](https://github.com/user-attachments/assets/76fb8127-975a-41a2-b50d-3565c76280df)
 
 ### 📸 Screenshot: Snowflake Loaded Tables  
-![Snowflake Schema View]([screenshots/snowflake_data_loaded.png](https://github.com/user-attachments/assets/1453a90c-9259-42ad-a513-635092e3cd5d))
+![Snowflake Schema View](https://github.com/user-attachments/assets/1453a90c-9259-42ad-a513-635092e3cd5d)
 
 ---
 
