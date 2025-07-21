@@ -1,10 +1,10 @@
-# 🚀 PlanetKart Analytics: dbt + Snowflake + Airbyte
+# PlanetKart Analytics: dbt + Snowflake + Airbyte
 
 Welcome to the **PlanetKart Analytics Mini-Universe** 🌌 – a complete end-to-end data engineering solution simulating a production-style environment for interplanetary e-commerce!
 
 ---
 
-## 📘 Project Overview
+## Project Overview
 
 **Objective**: Design and implement a production-like data pipeline and warehouse using **Airbyte**, **Snowflake**, and **dbt** to extract, transform, model, and test data while applying core Data Warehousing concepts.
 
@@ -12,13 +12,13 @@ Welcome to the **PlanetKart Analytics Mini-Universe** 🌌 – a complete end-to
 
 ---
 
-## 🌍 Storyline: Become the Chief Data Engineer of PlanetKart
+## Storyline: Become the Chief Data Engineer of PlanetKart
 
 PlanetKart operates across **Mars**, **Venus**, and **Earth**. Your job? Build a robust and scalable data stack that empowers analytics for the leadership team — from ingestion to warehouse modeling and data testing.
 
 ---
 
-## 🧾 Dataset
+## Dataset
 
 Source files (CSV):
 
@@ -30,7 +30,7 @@ Source files (CSV):
 
 ---
 
-## 🏗️ Design Decisions
+## Design Decisions
 
 - **Star Schema**: Central fact table (`fact_orders`) with dimension tables for customers, products, and regions.
 - **Surrogate Keys**: All dimensions and facts use surrogate keys generated via dbt-utils macros for consistency and join performance.
@@ -43,18 +43,18 @@ Source files (CSV):
 
 ---
 
-## 🔁 Step 1: Load Data Using Airbyte → Snowflake
+## Step 1: Load Data Using Airbyte → Snowflake
 
 - Source: CSVs ingested via **Airbyte** using Google Drive / local source connector
 - Destination: **Snowflake**
 - Target Schema: `PLANETKART_RAW`
 
-✅ **Checkpoint**: Raw tables successfully loaded into Snowflake
+**Checkpoint**: Raw tables successfully loaded into Snowflake
 
-### 📸 Screenshot: Airbyte Pipeline Setup  
+### Screenshot: Airbyte Pipeline Setup  
 ![Airbyte Pipeline Setup](https://github.com/user-attachments/assets/76fb8127-975a-41a2-b50d-3565c76280df)
 
-### 📸 Screenshot: Snowflake Loaded Tables  
+### Screenshot: Snowflake Loaded Tables  
 ![Snowflake Schema View](https://github.com/user-attachments/assets/1453a90c-9259-42ad-a513-635092e3cd5d)
 
 ---
@@ -65,42 +65,42 @@ Source files (CSV):
 - `PLANETKART_STAGE`: Staging cleaned models  
 - `PLANETKART_ANALYTICS`: Final models (facts, dimensions)
 
-### 🏗️ Models Included
+### Models Included
 
-#### ✅ Staging Models
+#### Staging Models
 - `stg_customers`
 - `stg_products`
 - `stg_regions`
 - `stg_orders`
 - `stg_order_items`
 
-#### ✅ Dimension Models
+#### Dimension Models
 - `dim_customers`
 - `dim_products`
 - `dim_regions`
 
-#### ✅ Fact Model
+#### Fact Model
 - `fact_orders`: Joins with all dimensions and calculates order metrics
 
-#### ✅ Snapshots
+#### Snapshots
 - `snapshots/customers_snapshot.sql`: Tracks changes in customer records (SCD Type 2)
 
 ---
 
-## 🔬 Step 3: Apply Data Warehouse Concepts & Assumptions
+## Step 3: Apply Data Warehouse Concepts & Assumptions
 
-### ✅ Concepts Applied
+### Concepts Applied
 
 | Concept                     | Applied? | Notes |
 |-----------------------------|----------|-------|
-| Star Schema                | ✅       | Fact table with connected dimensions |
-| Surrogate Keys            | ✅       | `*_key` columns generated using dbt-utils macros |
-| SCD Type 2 via Snapshot    | ✅       | `customers_snapshot.sql` tracks historical changes |
-| dbt Tests                  | ✅       | Unique, not_null, accepted values, expression-based |
-| Freshness / Anomaly Tests | ✅       | Implemented using dbt-utils |
-| Macros                     | ✅       | Used to standardize `surrogate_key` and date logic |
+| Star Schema                | yes       | Fact table with connected dimensions |
+| Surrogate Keys            | yes       | `*_key` columns generated using dbt-utils macros |
+| SCD Type 2 via Snapshot    | yes       | `customers_snapshot.sql` tracks historical changes |
+| dbt Tests                  | yes       | Unique, not_null, accepted values, expression-based |
+| Freshness / Anomaly Tests | yes       | Implemented using dbt-utils |
+| Macros                     | yes      | Used to standardize `surrogate_key` and date logic |
 
-### 📝 Assumptions Made
+### Assumptions Made
 
 - Orders are not modified after being placed (no SCD applied to them)
 - Customers may change emails, region, etc., hence SCD Type 2 is applied
@@ -111,31 +111,31 @@ Source files (CSV):
 
 ---
 
-## 📐 Schema Diagram
+## Schema Diagram
 
-📌 Visualize the Star Schema Design  
+Visualize the Star Schema Design  
 ![Schema Diagram](https://github.com/user-attachments/assets/faa9c541-358f-4f2f-8365-1ae65bcb3d35)
 
 ---
 
-## 🧪 Tests Implemented
+## Tests Implemented
 
-### ❗ Core dbt Tests
+### Core dbt Tests
 - `not_null` and `unique` constraints
 - `accepted_values` for `orders.status`
 
-### 🔍 Custom Tests (dbt-utils)
+### Custom Tests (dbt-utils)
 - `dbt_utils.unique_combination_of_columns`
 - `dbt_utils.recency`: Checks data freshness
 - `dbt_utils.equal_rowcount`: Ensures row count consistency between sources and staging
 
-### 🕒 Freshness & Anomaly Tests
+### Freshness & Anomaly Tests
 - Source freshness via `dbt_source_freshness`
 - Detect delayed pipeline syncs and anomalies in key metrics
 
 ---
 
-## 📦 Macros Used
+## Macros Used
 
 Reusable logic includes:
 - `generate_surrogate_key` using `dbt_utils.surrogate_key`
@@ -145,12 +145,12 @@ Reusable logic includes:
 
 ---
 
-## 🛠️ Complete dbt Setup & Run Guide
+## Complete dbt Setup & Run Guide
 
 ### Prerequisites Check
-- ✅ Snowflake trial account
-- ✅ Data loaded in PLANETKART_RAW schema
-- ✅ Airbyte pipeline setup
+- Snowflake trial account
+- Data loaded in PLANETKART_RAW schema
+- Airbyte pipeline setup
 - Need: dbt Core installation
 
 ### Step 1: Install dbt Core
@@ -189,7 +189,7 @@ planetkart_dw:
       keepalive: false
 ```
 
-**📝 Replace the placeholders with your actual Snowflake details!**
+** Replace the placeholders with your actual Snowflake details!**
 
 ### Step 4: Test Connection
 ```bash
@@ -299,7 +299,7 @@ dbt show --select dim_customers
 
 ---
 
-## 🖼️ Screenshots & Visuals
+## Screenshots & Visuals
 
 - ![Airbyte Pipeline Setup](https://github.com/user-attachments/assets/76fb8127-975a-41a2-b50d-3565c76280df) – Airbyte source-to-Snowflake sync
 - ![Snowflake Data Loaded](https://github.com/user-attachments/assets/1453a90c-9259-42ad-a513-635092e3cd5d) – Snowflake tables from raw schema
@@ -310,7 +310,7 @@ dbt show --select dim_customers
 
 ---
 
-## 🤝 Credits
+## Credits
 
 **Created by**: [Satyam Agrawal](https://github.com/agrawalsatyam)  
 **Year**: 2025  
@@ -318,7 +318,7 @@ dbt show --select dim_customers
 
 ---
 
-## ✅ Submission Checklist
+## Submission Checklist
 
 - [x] Raw data ingested to Snowflake using Airbyte  
 - [x] dbt models structured in staging + marts  
@@ -326,4 +326,4 @@ dbt show --select dim_customers
 - [x] Snapshot for Type 2 SCD implemented  
 - [x] Tests and macros added  
 - [x] Screenshots added to project repo  
-- [x] This README.md documents the entire project ✅
+- [x] This README.md documents the entire project 
