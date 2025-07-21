@@ -52,7 +52,7 @@ Source files (CSV):
 ✅ **Checkpoint**: Raw tables successfully loaded into Snowflake
 
 ### 📸 Screenshot: Airbyte Pipeline Setup  
-![Airbyte Pipeline Setup](screenshots/airbyte_pipeline.png)
+![Airbyte Pipeline Setup](Screenshot%202025-07-21%20at%207.26.12%E2%80%AFPM.png)
 
 ### 📸 Screenshot: Snowflake Loaded Tables  
 ![Snowflake Schema View](screenshots/snowflake_data_loaded.png)
