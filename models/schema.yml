@@ -1,0 +1,114 @@
+version: 2
+
+sources:
+  - name: planetkart_raw
+    description: Raw data from Hevo pipeline
+    database: AIRBYTE_DATABASE
+    schema: planetkart_raw
+    tables:
+      - name: CUSTOMERS
+        description: Customer information
+        loaded_at_field: _loaded_at
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        columns:
+          - name: CUSTOMER_ID
+            description: Unique customer identifier
+            tests:
+              - unique
+              - not_null
+      
+      - name: PRODUCTS
+        description: Product catalog
+        columns:
+          - name: PRODUCT_ID
+            description: Unique product identifier
+            tests:
+              - unique
+              - not_null
+      
+      - name: REGIONS
+        description: Regional mapping
+        columns:
+          - name: REGION_ID
+            description: Unique region identifier
+            tests:
+              - unique
+              - not_null
+      
+      - name: ORDERS
+        description: Order transactions
+        columns:
+          - name: ORDER_ID
+            description: Unique order identifier
+            tests:
+              - unique
+              - not_null
+          - name: STATUS
+            description: Order status
+            tests:
+              - accepted_values:
+                  values: ['Pending', 'Shipped', 'Delivered', 'Cancelled', 'Completed']
+      
+      - name: ORDER_ITEMS
+        description: Order line items
+        columns:
+          - name: ORDER_ID
+            description: Order identifier
+            tests:
+              - not_null
+
+models:
+  - name: stg_customers
+    description: Staged customer data
+    columns:
+      - name: CUSTOMER_ID
+        description: Unique customer identifier
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_products
+    description: Staged product data
+    columns:
+      - name: PRODUCT_ID
+        description: Unique product identifier
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: Staged order data
+    columns:
+      - name: ORDER_ID
+        description: Unique order identifier
+        tests:
+          - unique
+          - not_null
+      - name: CUSTOMER_ID
+        description: Customer identifier (FK to stg_customers)
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: CUSTOMER_ID
+
+  - name: dim_customers
+    description: Customer dimension table
+    columns:
+      - name: customer_key
+        description: Surrogate key for customers
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_orders
+    description: Order fact table
+    columns:
+      - name: order_key
+        description: Surrogate key for orders
+        tests:
+          - unique
+          - not_null
+      - name: order_total
+        description: Total value of the order
