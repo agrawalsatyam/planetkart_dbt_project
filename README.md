@@ -2,7 +2,7 @@
 
 Welcome to the **PlanetKart Analytics Mini-Universe** 🌌 – a complete end-to-end data engineering solution simulating a production-style environment for interplanetary e-commerce!
 
----
+
 
 ## Project Overview
 
@@ -10,13 +10,13 @@ Welcome to the **PlanetKart Analytics Mini-Universe** 🌌 – a complete end-to
 
 **Repo**: [GitHub - planetkart_dbt_project](https://github.com/agrawalsatyam/planetkart_dbt_project)
 
----
+
 
 ## Storyline: Become the Chief Data Engineer of PlanetKart
 
 PlanetKart operates across **Mars**, **Venus**, and **Earth**. Your job? Build a robust and scalable data stack that empowers analytics for the leadership team — from ingestion to warehouse modeling and data testing.
 
----
+
 
 ## Dataset
 
@@ -28,7 +28,7 @@ Source files (CSV):
 - `orders.csv`: Order transaction data  
 - `order_items.csv`: Line-level order details
 
----
+
 
 ## Design Decisions
 
@@ -41,7 +41,7 @@ Source files (CSV):
 - **Macros**: Custom and dbt-utils macros are used to DRY up logic, especially for surrogate key generation and date handling.
 - **Modular Project Structure**: Clear separation of staging, marts, snapshots, macros, and tests for maintainability.
 
----
+
 
 ## Step 1: Load Data Using Airbyte → Snowflake
 
@@ -57,9 +57,9 @@ Source files (CSV):
 ### Screenshot: Snowflake Loaded Tables  
 ![Snowflake Schema View](https://github.com/user-attachments/assets/1453a90c-9259-42ad-a513-635092e3cd5d)
 
----
 
-## 📊 Step 2: dbt Modeling in Snowflake
+
+## Step 2: dbt Modeling in Snowflake
 
 **Schemas Used**:
 - `PLANETKART_STAGE`: Staging cleaned models  
@@ -85,7 +85,7 @@ Source files (CSV):
 #### Snapshots
 - `snapshots/customers_snapshot.sql`: Tracks changes in customer records (SCD Type 2)
 
----
+
 
 ## Step 3: Apply Data Warehouse Concepts & Assumptions
 
@@ -109,14 +109,14 @@ Source files (CSV):
 - All transformations are idempotent and can be re-run safely
 - Data is loaded in UTC timezone
 
----
+
 
 ## Schema Diagram
 
 Visualize the Star Schema Design  
 ![Schema Diagram](https://github.com/user-attachments/assets/faa9c541-358f-4f2f-8365-1ae65bcb3d35)
 
----
+
 
 ## Tests Implemented
 
@@ -133,7 +133,7 @@ Visualize the Star Schema Design
 - Source freshness via `dbt_source_freshness`
 - Detect delayed pipeline syncs and anomalies in key metrics
 
----
+
 
 ## Macros Used
 
@@ -143,7 +143,7 @@ Reusable logic includes:
 - Expression-based testing via `dbt_utils.expression_is_true`
 - Custom macros for DRY transformations
 
----
+
 
 ## Complete dbt Setup & Run Guide
 
@@ -297,7 +297,7 @@ dbt run --full-refresh
 dbt show --select dim_customers
 ```
 
----
+
 
 ## Screenshots & Visuals
 
@@ -307,23 +307,3 @@ dbt show --select dim_customers
 - Successful `dbt run` - ![dbt Run Output](https://github.com/user-attachments/assets/2d818ab6-3aac-410a-90f2-b7956ad354ca)
 - Passed and failed test cases - ![dbt Test Output](https://github.com/user-attachments/assets/2e3c6eb1-29ad-493f-a15b-cc4bc9112272)
 - Snapshot tracking changes - ![dbt Snapshot Output](https://github.com/user-attachments/assets/1fa4d897-2990-4963-9341-28437fe4e97b)
-
----
-
-## Credits
-
-**Created by**: [Satyam Agrawal](https://github.com/agrawalsatyam)  
-**Year**: 2025  
-**License**: Educational Use Only
-
----
-
-## Submission Checklist
-
-- [x] Raw data ingested to Snowflake using Airbyte  
-- [x] dbt models structured in staging + marts  
-- [x] All models materialized successfully in Snowflake  
-- [x] Snapshot for Type 2 SCD implemented  
-- [x] Tests and macros added  
-- [x] Screenshots added to project repo  
-- [x] This README.md documents the entire project 
