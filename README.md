@@ -8,13 +8,6 @@
 **Repo**: [GitHub - planetkart_dbt_project](https://github.com/agrawalsatyam/planetkart_dbt_project)
 
 
-
-## Storyline: Become the Chief Data Engineer of PlanetKart
-
-PlanetKart operates across **Mars**, **Venus**, and **Earth**. Your job? Build a robust and scalable data stack that empowers analytics for the leadership team — from ingestion to warehouse modeling and data testing.
-
-
-
 ## Dataset
 
 Source files (CSV):
