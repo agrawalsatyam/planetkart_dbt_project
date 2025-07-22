@@ -1,7 +1,4 @@
-# PlanetKart Analytics: dbt + Snowflake + Airbyte
-
-Welcome to the **PlanetKart Analytics Mini-Universe** 🌌 – a complete end-to-end data engineering solution simulating a production-style environment for interplanetary e-commerce!
-
+# PlanetKart Analytics
 
 
 ## Project Overview
