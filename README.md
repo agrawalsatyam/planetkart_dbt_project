@@ -104,7 +104,7 @@ Source files (CSV):
 ## Schema Diagram
 
 Visualize the Star Schema Design  
-![Schema Diagram](https://github.com/user-attachments/assets/be68a573-a047-4070-a54d-31a89b8d7357)
+![Schema Diagram](https://github.com/user-attachments/assets/43d62960-2edc-4f36-b7c6-41484ddaed54)
 
 
 
@@ -293,7 +293,7 @@ dbt show --select dim_customers
 
 - Airbyte source-to-Snowflake sync - ![Airbyte Pipeline Setup](https://github.com/user-attachments/assets/76fb8127-975a-41a2-b50d-3565c76280df)
 - Snowflake tables from raw schema - ![Snowflake Data Loaded](https://github.com/user-attachments/assets/1453a90c-9259-42ad-a513-635092e3cd5d)
-- Star schema architecture - ![Schema Diagram](https://github.com/user-attachments/assets/be68a573-a047-4070-a54d-31a89b8d7357)
+- Star schema architecture - ![Schema Diagram](https://github.com/user-attachments/assets/43d62960-2edc-4f36-b7c6-41484ddaed54)
 - Successful `dbt run` - ![dbt Run Output](https://github.com/user-attachments/assets/2d818ab6-3aac-410a-90f2-b7956ad354ca)
 - Passed and failed test cases - ![dbt Test Output](https://github.com/user-attachments/assets/2e3c6eb1-29ad-493f-a15b-cc4bc9112272)
 - Snapshot tracking changes - ![dbt Snapshot Output](https://github.com/user-attachments/assets/1fa4d897-2990-4963-9341-28437fe4e97b)
